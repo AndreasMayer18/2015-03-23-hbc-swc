@@ -1,15 +1,9 @@
 ## SOFTWARE CARPENTRY INTRO TO R 
-
-
-# Creating Objects
-weight_kg <- 55
-weight_kg
-
-weight_lb  <- weight_kg * 2.2
-
-weights <- c(50, 60, 65,82)
-animals  <- c("dog", "cat", "mouse", "horse") 
+## This file contains the code for all activities carried out in this lecture
 
 
 # Read in metadata
-metadata <- read.csv('meta//mouse_exp_design.csv', header=T, row.names=1)
+metadata <- read.csv('meta//mouse_exp_design.csv', header=F, row.names=F)
+
+# Read in data file
+data <- read.csv("data/counts.rpkm", header=T, sep="\t", row.names=1)
