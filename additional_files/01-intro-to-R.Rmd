@@ -94,7 +94,7 @@ weight_kg <- 100
 ```
 What do you think is the current content of the object `weight_lb`? 126.5 or 200?
 
-_Note: When typing out a variable that is stored try pressing the `Tab` key after typing only `weight`. You will find that RStudio will auto-complete the variable name or a drop-down menu will appear. For function calls this will also work. The window to the right gives you more information on the function and its arguments as you scroll down and highlight each individually._ 
+_Note: When typing out a variable that is stored try pressing the `Tab` key after typing only `weight`. You will find that RStudio will auto-complete the variable name._ 
 
 ### Exercise
 
@@ -187,25 +187,27 @@ factors (`factor`).
 ## Functions and their arguments
 
 Functions are "self contained" modules of code that accomplish a specific task. Functions usually take in data, process it, and return a result. We have already used a few examples of basic functions above i.e `length`, `class` and `str`.
-Let's look at a more advanced function call below `read.csv`. This function is used to read in data from a csv file.
+Let's look at a more advanced function call below `read.csv`. This function is used to read in data from a csv file. There are numerous other functions to load in data depending on your filetype, we will discuss this in detail in the next section.
 
-Why does this not work?
+_Note: When typing out read.csv try pressing the `Tab` key after typing only `weight`. You will find that a drop-down menu will appear listing all `read` options for loading in files. The window to the right gives you more information on the function and its arguments as you scroll down and highlight each individually._ 
+
+**Why does this not work?**
 ```{r, eval=FALSE}
-metadata <- read.csv(file='mouse_exp_design.csv')
+read.csv(file='mouse_exp_design.csv') # do not assign it to a variable yet
 ```
 
 We need to make sure that the path to our file is correct. First check what our working directory is, then set the path accordingly.
 
 ```{r, echo=FALSE}
 getwd()
-metadata <- read.csv(file="meta//mouse_exp_design.csv")
+read.csv(file="meta//mouse_exp_design.csv")
 ```
 
-The `file=` part inside the parentheses is called an argument, and most
+The `file=` part inside the parentheses is called an **argument**, and most
 functions use arguments. Arguments modify the behavior of the
 function. Typically, they take some input (e.g., some data, an object) and other
 options to change what the function will return, or how to treat the data
-provided.
+provided. Simple functions like the function `length` don't need additional modifications. It will take input (i.e. vector), process it (i.e. count the number of elements) and return value.
 
 Most functions can take several arguments, but most are specified by default so
 you don't have to enter them. To see these default values, you can either type
@@ -260,20 +262,21 @@ attached base packages:
 ```
 
 In this course we will mostly be using functions from the standard base packages. However, the more you work with R you will come to realize that there is a cornucopia of R packges that offer a wide variety of functionality. To use additional packages will require installation. 
-Packages for R can be installed from the [CRAN](http://cran.r-project.org/) package repository:
+Packages for R can be installed from the [CRAN](http://cran.r-project.org/) package repository. An example is given below as we install the `gplots` package required for some images we will create later on.
 
 ```{r, eval=FALSE}
-install.packages('package_name_here')
+install.packages('gplots')
 ```
 
-Alternatively, packages can also be installed from [Bioconductor]() by using the `biocLite.R` script 
+Alternatively, packages can also be installed from [Bioconductor]() by using the `biocLite.R` script. Here we will install another package useful for visualization `ggplot2`
 
 ```{r, eval=FALSE}
 source("http://bioconductor.org/biocLite.R")
-biocLite('package_name_here')
+biocLite('ggplot2')
 ```
 Once you have the package installed, you can load it into your R session for use. Note that quotations are not required here.
 
 ```{r, eval=FALSE}
-library(package_name_here)
+library(gplots)
+library(ggplot2)
 ```

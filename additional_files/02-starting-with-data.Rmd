@@ -25,7 +25,7 @@ characters, integers, factors). The `str()` function is useful to inspect the
 data types of the columns.
 
 A `data.frame` can be created by the functions `read.csv()` or `read.table()`, in
-other words, when importing spreadsheets from your hard drive (or the web).
+other words, when importing spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files.
 
 By default, `data.frame` converts (= coerces) columns that contain characters
 (i.e., text) into the `factor` data type. Depending on what you want to do with
@@ -41,7 +41,7 @@ We are studying two different celltypes in mice and want to evaluate how gene ex
 
 To load in our metadata, we need to locate the `mouse_exp_design.csv` file. We will use
 `read.csv()` to load into memory (as a `data.frame`) the content of the CSV
-file. Using the same command function as our previous session, but this time we will assign it to a variable.
+file. Using the same command function as our previous session, but **this time we will assign it to a variable**.
 
 ```{r, echo=FALSE}
 
@@ -58,7 +58,7 @@ variable's value:
 metadata
 ```
 
-By default, using the `read.csv` function will load in the data and assign the first row of the table to be our **column names**. Additionally since our header has one less name than there are columns R automatically assigns the **first column as row names**.
+By default, using the `read.csv` function will load in the data and assign the first row of the table to be our **column names**. Additionally since our header has one less name than there are columns R automatically assigns the **first column as row names**. 
 We can look at the values assigned for each by using `row.names` and `col.names`.
 
 ```{r, results='show', purl=FALSE}
@@ -66,13 +66,10 @@ row.names(metadata)
 col.names(metadata)
 ```
 
-We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`.
+### Exercise
+We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`. Check to see how the dataframe has changed. What happens if we load in data using `read.table`?
 
-```{r, results='show', purl=FALSE}
-metadata <- read.csv('meta/mouse_exp_design.csv', header=FALSE)
-```
-
-Check to see how your dataframe has changed. **Load the data in again using default settings to continue.**
+ **Load the data in again using default settings and `read.csv` to continue.**
 
 Suppose we had a larger file, we might not want to display all the contents in the console. Instead we could check the top (the first 6 lines) of this `data.frame` using the
 function `head()`:
@@ -89,7 +86,6 @@ str(metadata)
 ```
 
 __You can also get this information from the "Environment" tab in RStudio.__
-
 
 # Inspecting `data.frame` objects
 
@@ -118,8 +114,6 @@ Note: most of these functions are "generic", they can be used on other types of
 objects besides `data.frame`.
 
 ### Challenge
-
-Can you answer the following questions?
 
 * What is the class of the object `metadata`?
 * How many rows and how many columns are in this object?

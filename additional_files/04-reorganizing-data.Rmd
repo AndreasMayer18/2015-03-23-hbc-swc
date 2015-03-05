@@ -32,9 +32,9 @@ We can also subset using other [logical operators](http://www.statmethods.net/ma
 subset(metadata, celltype == "typeA" & genotype == "WT")
 ```
 
-Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector.
+Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument select allwos us to specify which columns to keep. Which columns are left?
 ```{r, purl=FALSE}
-subset(metadata, replicate < 3)
+subset(metadata, replicate < 3, select = -replicate)
 ```
 
 
@@ -52,10 +52,59 @@ Take a look at the first few lines of the data matrix to see what's in there.
 head(rpkm_data)
 ```
 
+It looks as if the sample names (header) are similar to the row names of our metadata file, but it's hard to tell since they are not in the  same order. We can do a quick check of the dimensions and see if the numbers match up. 
 
-Check the dimensions, colnames. Do we have data for every sample that we have metadata? Are the samples in teh same order?
+```{r, echo=TRUE}
+dim(rpkm_data)
+```
 
-Subset the data to only look at one cell type
+Do we have data for every sample that we have metadata? To do that we can use the `%in%` operator. Although lacking in [documentation](http://dr-k-lo.blogspot.com/2013/11/in-in-r-underused-in-operator.html) this operator is well used and quite useful. It will take a vector as input to the right and will evaluate each element to see if there is a match in the vector that follows on the right of the operator. For each element of vector on the right it will return a logical value. Take a look at the example below:
+
+```{r, echo=TRUE}
+
+A <- c(1,3,5,7,9,11)   # odd numbers
+B <- c(2,4,6,8,10,12)  # even numbers
+
+# test to see if any of A are in B
+A %in% B
+```
+
+Since vector A is odd numbers and vector B is even numbers, there is no overlap and so for each element we get a `FALSE`. Let's change a couple of numbers inside vector B.
+
+```{r, echo=TRUE}
+
+B <- c(2,4,6,8,1,5)  # add some odd numbers in 
+
+# test to see if any of A are in B
+A %in% B
+```
+
+The logical vector returned will tell us which elements are mismatching and we can count how many are `TRUE`. This example is a small vector and so it's easy to count; when we work with large datasets this is not pratcical. The `all` function comes in handy here. Given a logical vector, it will tell you whether are all values `TRUE`. If there is atleast one `FALSE` value, the function will return a `FALSE` and you know that all of A are not contained in B.
+
+```{r, echo=TRUE}
+
+all(A %in% B)
+```
+
+Suppose we had two vectors that had teh same values but just not in the same order. We could also use `all` to test for that. Rather tahn using the `%in%` operator we would use `==` and compare each element to the respective element in the other vector. Unlike the `%in%` operator, for this to work you must have two vectors that are of equal length.
+
+```{r, echo=TRUE}
+
+A <- c(1,2,3,4,5)
+B <- c(5,4,3,2,1)  # same numbers but backwards 
+
+# test to see if any of A are in B
+A %in% B
+
+# test to see if any of A is equal to B
+A == B
+
+# use all to check if they are a perfect match
+all(A == B)
+```
+
+### Exercise
+Apply the `all` function to check whether all of the row names of our metadata are contained in the header of our data file. Also check to see that tehy are in the same order.
 
 
 
