@@ -24,14 +24,13 @@ represents a column, and each vector can be of a different data type (e.g.,
 characters, integers, factors). The `str()` function is useful to inspect the
 data types of the columns.
 
-A `data.frame` can be created by the functions `read.csv()` or `read.table()`, in
-other words, when importing spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files.
+A `data.frame` can be created by the functions `read.csv()` or `read.table()`, which can be used to import spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files.
 
 By default, `data.frame` converts (= coerces) columns that contain characters
 (i.e., text) into the `factor` data type. Depending on what you want to do with
 the data, you may want to keep these columns as `character`. To do so,
 `read.csv()` and `read.table()` have an argument called `stringsAsFactors` which
-can be set to `FALSE`:
+can be set to `FALSE`.
 
 
 # Loading in files
@@ -48,8 +47,6 @@ file. Using the same command function as our previous session, but **this time w
 metadata <- read.csv(file='meta/mouse_exp_design.csv')
 ```
 
-__At this point, make sure all participants have the data loaded__
-
 This statement doesn't produce any output because assignment doesn't display
 anything. If we want to check that our data has been loaded, we can print the
 variable's value: 
@@ -58,12 +55,14 @@ variable's value:
 metadata
 ```
 
+__At this point, make sure all participants have the data loaded__
+
 By default, using the `read.csv` function will load in the data and assign the first row of the table to be our **column names**. Additionally since our header has one less name than there are columns R automatically assigns the **first column as row names**. 
 We can look at the values assigned for each by using `row.names` and `col.names`.
 
 ```{r, results='show', purl=FALSE}
-row.names(metadata)
-col.names(metadata)
+rownames(metadata)
+colnames(metadata)
 ```
 
 ### Exercise
