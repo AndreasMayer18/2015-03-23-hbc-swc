@@ -16,7 +16,7 @@ minutes:
 # Subsetting data
 
 When analyzing data, we often want to look at partial statistics, such
-as the maximum value of a variable per species or the average value per plot.
+as the maximum value of a variable per species or the average value per celltype.
 
 One way to do this is to select the data we want, and create a new temporary
 array, using the `subset()` function. For instance, if we just want to look at
@@ -32,7 +32,7 @@ We can also subset using other [logical operators](http://www.statmethods.net/ma
 subset(metadata, celltype == "typeA" & genotype == "WT")
 ```
 
-Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument select allwos us to specify which columns to keep. Which columns are left?
+Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument select allows us to specify which columns to keep. Which columns are left?
 ```{r, purl=FALSE}
 subset(metadata, replicate < 3, select = c('genotype', 'celltype'))
        
