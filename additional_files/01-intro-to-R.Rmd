@@ -92,7 +92,7 @@ and then change `weight_kg` to 100.
 ```{r, purl=FALSE}
 weight_kg <- 100
 ```
-What do you think is the current content of the object `weight_lb`? 126.5 or 200?
+What do you think is the current content of the object `weight_lb`? 121 or 220?
 
 _Note: When typing out a variable that is stored try pressing the `Tab` key after typing only `weight`. You will find that RStudio will auto-complete the variable name._ 
 
@@ -189,7 +189,7 @@ factors (`factor`).
 Functions are "self contained" modules of code that accomplish a specific task. Functions usually take in data, process it, and return a result. We have already used a few examples of basic functions above i.e `length`, `class` and `str`.
 Let's look at a more advanced function call below `read.csv`. This function is used to read in data from a csv file. There are numerous other functions to load in data depending on your filetype, we will discuss this in detail in the next section.
 
-_Note: When typing out read.csv try pressing the `Tab` key after typing only `weight`. You will find that a drop-down menu will appear listing all `read` options for loading in files. The window to the right gives you more information on the function and its arguments as you scroll down and highlight each individually._ 
+_Note: When typing out read.csv try pressing the `Tab` key after typing only `read`. You will find that a drop-down menu will appear listing all `read` options for loading in files. The window to the right gives you more information on the function and its arguments as you scroll down and highlight each individually._ 
 
 **Why does this not work?**
 ```{r, eval=FALSE}
@@ -261,7 +261,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base    
 ```
 
-In this course we will mostly be using functions from the standard base packages. However, the more you work with R you will come to realize that there is a cornucopia of R packges that offer a wide variety of functionality. To use additional packages will require installation. 
+In this course we will mostly be using functions from the standard base packages. However, the more you work with R you will come to realize that there is a cornucopia of R packages that offer a wide variety of functionality. To use additional packages will require installation. 
 Packages for R can be installed from the [CRAN](http://cran.r-project.org/) package repository. An example is given below as we install the `gplots` package required for some images we will create later on.
 
 ```{r, eval=FALSE}
