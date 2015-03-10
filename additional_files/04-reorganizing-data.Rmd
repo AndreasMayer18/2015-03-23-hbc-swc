@@ -11,6 +11,7 @@ minutes:
 > * Matching elements of dataframes
 > * Replacing values in row/vectors
 > * Add/remove columns and rows
+> * Write to file
 
 
 # Subsetting data
