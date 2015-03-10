@@ -3,7 +3,7 @@
 
 
 # Read in metadata
-metadata <- read.csv('meta//mouse_exp_design.csv', header=F, row.names=F)
+metadata <- read.csv('meta//mouse_exp_design.csv')
 
 # Read in data file
-data <- read.csv("data/counts.rpkm", header=T, sep="\t", row.names=1)
+data <- read.csv("data/counts.rpkm", header=T, sep=",", row.names=1)

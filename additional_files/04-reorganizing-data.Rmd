@@ -15,7 +15,7 @@ minutes:
 
 # Subsetting data
 
-When analyzing data, though, we often want to look at partial statistics, such
+When analyzing data, we often want to look at partial statistics, such
 as the maximum value of a variable per species or the average value per plot.
 
 One way to do this is to select the data we want, and create a new temporary
@@ -26,7 +26,7 @@ the samples of a specific celltype "typeA":
 subset(metadata, celltype == "typeA")
 ```
 
-We can also subset using other [logical operators](http://www.statmethods.net/management/operators.html) in R. For example suppose we wanted to subset to keep only the WT samples from the typeA cells.
+We can also subset using other [logical operators](http://www.statmethods.net/management/operators.html) in R. For example suppose we wanted to subset to keep only the **WT samples** from the **typeA cells**.
 
 ```{r, purl=FALSE}
 subset(metadata, celltype == "typeA" & genotype == "WT")
@@ -34,7 +34,8 @@ subset(metadata, celltype == "typeA" & genotype == "WT")
 
 Alternatively, we could try looking at only the first two replicates of each sample set. Here, we can use the less than operator since replicate is currently a numeric vector. Adding in the argument select allwos us to specify which columns to keep. Which columns are left?
 ```{r, purl=FALSE}
-subset(metadata, replicate < 3, select = -replicate)
+subset(metadata, replicate < 3, select = c('genotype', 'celltype'))
+       
 ```
 
 
@@ -58,7 +59,7 @@ It looks as if the sample names (header) are similar to the row names of our met
 dim(rpkm_data)
 ```
 
-Do we have data for every sample that we have metadata? To do that we can use the `%in%` operator. Although lacking in [documentation](http://dr-k-lo.blogspot.com/2013/11/in-in-r-underused-in-operator.html) this operator is well used and quite useful. It will take a vector as input to the right and will evaluate each element to see if there is a match in the vector that follows on the right of the operator. For each element of vector on the right it will return a logical value. Take a look at the example below:
+**Do we have data for every sample that we have metadata?** To do that we can use the `%in%` operator. Although lacking in [documentation](http://dr-k-lo.blogspot.com/2013/11/in-in-r-underused-in-operator.html) this operator is well used and quite useful. It will take a vector as input to the left and will evaluate each element to see if there is a match in the vector that follows on the right of the operator. For each element of vector on the left it will return a logical value. Take a look at the example below:
 
 ```{r, echo=TRUE}
 
@@ -69,7 +70,7 @@ B <- c(2,4,6,8,10,12)  # even numbers
 A %in% B
 ```
 
-Since vector A is odd numbers and vector B is even numbers, there is no overlap and so for each element we get a `FALSE`. Let's change a couple of numbers inside vector B.
+Since vector A is odd numbers and vector B is even numbers, there is no overlap and so for each element we get a `FALSE`. Let's change a couple of numbers inside vector B to match vector A.
 
 ```{r, echo=TRUE}
 
@@ -79,14 +80,14 @@ B <- c(2,4,6,8,1,5)  # add some odd numbers in
 A %in% B
 ```
 
-The logical vector returned will tell us which elements are mismatching and we can count how many are `TRUE`. This example is a small vector and so it's easy to count; when we work with large datasets this is not pratcical. The `all` function comes in handy here. Given a logical vector, it will tell you whether are all values `TRUE`. If there is atleast one `FALSE` value, the function will return a `FALSE` and you know that all of A are not contained in B.
+The logical vector returned will tell us which elements are mismatching and we can count how many are `TRUE` to get an overlap. The two vectors do not have to be the same size. In this example the vectors are small and so it's easy to count; but when we work with large datasets this is not practical. The `all` function comes in handy here. Given a logical vector, it will tell you whether are all values returned are `TRUE`. If there is atleast one `FALSE` value, the `all` function will return a `FALSE` and you know that all of A are not contained in B.
 
 ```{r, echo=TRUE}
 
 all(A %in% B)
 ```
 
-Suppose we had two vectors that had teh same values but just not in the same order. We could also use `all` to test for that. Rather tahn using the `%in%` operator we would use `==` and compare each element to the respective element in the other vector. Unlike the `%in%` operator, for this to work you must have two vectors that are of equal length.
+Suppose we had **two vectors that had the same values but just not in the same order**. We could also use `all` to test for that. Rather than using the `%in%` operator we would use `==` and compare each element to the same position in the other vector. Unlike the `%in%` operator, for this to work you must have **two vectors that are of equal length**.
 
 ```{r, echo=TRUE}
 
@@ -104,76 +105,65 @@ all(A == B)
 ```
 
 ### Exercise
-Apply the `all` function to check whether all of the row names of our metadata are contained in the header of our data file. Also check to see that tehy are in the same order.
+Apply the `all` function to check whether all of the row names of our metadata are contained in the header of our data file. Also check to see that they are in the same order.
 
 
+## Subset data using matching
+The column names in our data matrix are all contained in the row names of our metadata, but they appear to be out of order. We can use the `match()` function to create a new data matrix such that samples are in the same order. The function `match()` takes at least
+2 arguments: the values to be matched (in our case the row names `metadata`), and the table that contains the values to be matched against (in our case the column names of `data`. The function returns the position of the matches in the table, and this can be used to data columns. For values that don't match you can specify what values you would have it assigned using `nomatch` argument (by default this is NA).
 
-### Challenge
 
-1. What does the following do?
+```{r, echo=FALSE}
+# Retrieve a vector of indices where the column names match the row names 
+m <- match(row.names(metadata), colnames(data))
 
-  ```{r, echo=FALSE, purl=TRUE}
-  ## What does the following do? (Try to guess without executing it)
-  ## surveys_DO$month[2] <- 8
-  ```
+# Create a re-ordered data matrix based on the matching indices
+data_ordered  <- data[,m]
 
-1. Use the function `subset` twice to create a `data.frame` that contains all
-individuals of the species "DM" that were collected in 2002.
-  * How many individuals of the species "DM" were collected in 2002?
+# Check and see what happened
+head(data_ordered)
 
-  ```{r, echo=FALSE, purl=TRUE}
-  ##  Use the function `subset` twice to create a `data.frame` that
-  ##  contains all individuals of the species "DM" that were collected
-  ##  in 2002.
-  ##   * How many individuals of the species "DM" were collected in 2002?
-  ```
-
-## Adding a column to our dataset
-
-```{r, echo=FALSE, purl=TRUE}
-## Adding columns
+# Verify that the two are identical in order
+all(row.names(metadata) == colnames(data_ordered))
 ```
+
+
+# Modifying `data.frames`
 
 Sometimes, you may have to add a new column to your dataset that represents a
 new variable. You can add columns to a `data.frame` using the function `cbind()`
 (__c__olumn __bind__). Beware, the additional column must have the same number
 of elements as there are rows in the `data.frame`.
 
-In our survey dataset, the species are represented by a 2-letter code (e.g.,
-"AB"), however, we would like to include the species name. The correspondance
-between the 2 letter code and the names are in the file `species.csv`. In this
-file, one column includes the genus and another includes the species. First, we
-are going to import this file in memory:
+The data matrix we are working with has Ensembl IDs as the identifier, however it would also be nice to know the official gene symbols assocated with those IDs. The gene annotation was only provided for the counts file (`data/annotated_combined.counts`) but not the RPKM data. We need to take the gene symbols from the counts file and add it as a column in our data matrix. 
 
-```{r, echo=FALSE, purl=FALSE}
-species <- read.csv("../../data/biology/species.csv")
+### Exercise
+First you will use what you have learned previously to read in the file and check to make see if:
+
+1. all of the Ensemble IDs in the count matrix are contained in the RPKM matrix
+2. the order of Ensemble Ids is the same in both data frames
+
+```{r, echo=FALSE}
+
+# Answer to exercise
+counts <- read.csv('data/annotated_combined.counts')
+
+head(counts) # take a peek inside
+
+all(row.names(data) %in% row.names(counts))
+all(row.names(data) == row.names(counts))    # this will give an error
+
+# There is a difference in dimensions
+dim(counts)
+dim(data)
+
 ```
 
-```{r, eval=FALSE, purl=TRUE}
-species <- read.csv("data/species.csv")
-```
+Upon completion of the exercise, what did you find out? 
 
-We are then going to use the function `match()` to create a vector that contains
-the genus names for all our observations. The function `match()` takes at least
-2 arguments: the values to be matched (in our case the 2 letter code from the
-`surveys` data frame held in the column `species`), and the table that contains
-the values to be matched against (in our case the 2 letter code in the `species`
-data frame held in the column `species_id`). The function returns the position
-of the matches in the table, and this can be used to retrieve the genus names:
+You should have noticesHere we intoduce `which` as another function to subset. to subset, then match to reorder (if needed)
 
-```{r, purl=TRUE}
-surveys_spid_index <- match(surveys$species, species$species_id)
-surveys_genera <- species$genus[surveys_spid_index]
-```
-
-Now that we have our vector of genus names, we can add it as a new column to our
-`surveys` object:
-
-```{r, purl=TRUE}
-surveys <- cbind(surveys, genus=surveys_genera)
-```
-
-### Challenge
+then cbind to add columns, and show them how to remove it from the counts file. text only for rbind
 
 Use the same approach to also include the species names in the `surveys` data
 frame.

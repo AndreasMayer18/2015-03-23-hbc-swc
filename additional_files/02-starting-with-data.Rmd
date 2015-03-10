@@ -67,7 +67,7 @@ col.names(metadata)
 ```
 
 ### Exercise
-We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`. Check to see how the dataframe has changed. What happens if we load in data using `read.table`?
+We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`. Check to see how the dataframe has changed. What happens if we load in data using `read.table`? _Mention the requirement of all arguments when using `read.table`_
 
  **Load the data in again using default settings and `read.csv` to continue.**
 
