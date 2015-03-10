@@ -142,6 +142,7 @@ First you will use what you have learned previously to read in the file and chec
 
 1. all of the Ensemble IDs in the count matrix are contained in the RPKM matrix
 2. the order of Ensemble Ids is the same in both data frames
+3. subset such that you have two data files that have matching row names
 
 ```{r, echo=FALSE}
 
@@ -157,108 +158,30 @@ all(row.names(data) == row.names(counts))    # this will give an error
 dim(counts)
 dim(data)
 
+# Find the matching rows for the smaller of the two matrices
+match_rows <- match(row.names(data), row.names(counts))
+match_counts <- counts[match_rows,]
+
+# Double check to see that all row names match
+all(row.names(data) == row.names(match_counts))
+
 ```
 
-Upon completion of the exercise, what did you find out? 
-
-You should have noticesHere we intoduce `which` as another function to subset. to subset, then match to reorder (if needed)
-
-then cbind to add columns, and show them how to remove it from the counts file. text only for rbind
-
-Use the same approach to also include the species names in the `surveys` data
-frame.
-
-```{r, echo=FALSE, purl=TRUE}
-## Use the same approach to also include the species names in the
-## `surveys` data frame.
-```
-
+Now, we should have two data files of the same dimensions. The column of interest from our counts file (gene symbols) can be cut and paste onto our data file using `cbind` (__c__olumn__bind__) function to add columns. The number of rows needs to be identical between the two objects.
 
 ```{r, echo=FALSE, purl=FALSE}
-surveys_species <- species$species[surveys_spid_index]
-surveys <- cbind(surveys, species_name=surveys_species)
+annot_data <- cbind(genesymbol=match_counts$genesymbol, data_ordered)
 ```
 
-```{r, results='show'}
-## and check out the result
-head(surveys)
-```
+Suppose we wanted to remove the column, just like you can select columns by their positions in the `data.frame` or by their names you can also remove. The only difference is that we would use a minus sign to indicate the column number we wish to remove `annot_data[,-1]` or specify the column by name `annot_data[,-genesymbol]`. Note that the column names should not be quoted
 
-<!--- should we cover merge()? --->
+Similar to `cbind()` for columns, there is a function `rbind()` (__r__ow__bind__) that puts together two `data.frame`. With `rbind()` the number of columns and their names must be identical between the two objects. 
 
-# Adding rows
 
-<!--- Even if this is not optimal, using this approach requires to cover less   -->
-<!--- material such as logical operations on vectors. Depending on how fast the -->
-<!--- group moves, it might be better to show the correct way.                  -->
-
-```{r, echo=FALSE, purl=TRUE}
-## Adding rows
-```
-
-Let's create a `data.frame` that contains the information only for the species
-"DO" and "DM". We know how to create the data set for each species with the
-function `subset()`:
-
-```{r, purl=FALSE}
-surveys_DO <- subset(surveys, species == "DO")
-surveys_DM <- subset(surveys, species == "DM")
-```
-
-Similarly to `cbind()` for columns, there is a function `rbind()` (__r__ow
-__bind__) that puts together two `data.frame`. With `rbind()` the number of
-columns and their names must be identical between the two objects:
-
-```{r, purl=FALSE}
-surveys_DO_DM <- rbind(surveys_DO, surveys_DM)
-```
-
-### Challenge
-
-Using a similar approach, construct a new `data.frame` that only includes data
-for the years 2000 and 2001.
-
-```{r, echo=FALSE, purl=TRUE}
-## How many columns are now in (1) the `data.frame` `surveys`, (2) the `data.frame`
-## `surveys_index`?
-```
-
-# Removing columns
-
-```{r, echo=FALSE, purl=FALSE}
-## Removing columns
-```
-
-Just like you can select columns by their positions in the `data.frame` or by
-their names, you can remove them similarly.
-
-To remove it by column number:
-
-```{r, results='show', purl=FALSE}
-surveys_noDate <- surveys[, -c(2:4)]
-colnames(surveys)
-colnames(surveys_noDate)
-```
-
-The easiest way to remove by name is to use the `subset()` function. This time
-we need to specify explicitly the argument `select` as the default is to subset
-on rows (as above). The minus sign indicates the names of the columns to remove
-(note that the column names should not be quoted):
-
-```{r, results='show', purl=FALSE}
-surveys_noDate2 <- subset(surveys, select=-c(month, day, year))
-colnames(surveys_noDate2)
-```
-
-# Removing rows
+#### Exercise
+Use the code provided below to generate a dataframe and answer and try the following tasks:
 
 ```{r, echo=FALSE, purl=FALSE}
 ## Removing rows
 ```
 
-Typically rows are not associated with names, so to remove them from the
-`data.frame`, you can do:
-
-```{r, results='show', purl=FALSE}
-surveys_missingRows <- surveys[-c(10, 50:70), ] # removing rows 10, and 50 to 70
-```
