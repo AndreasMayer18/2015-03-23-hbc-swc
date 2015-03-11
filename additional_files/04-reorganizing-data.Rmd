@@ -201,3 +201,10 @@ rbind(df1, yellow)
 
 ```
 
+# Writing data to file
+Although we have the annotated RPKM data matrix stored in memory, it would be quite useful for future analyse. We can export it to file using the `write.csv` command, including arguments for the filename (be sure to add on the correct path so it gets exported to your `data` directory). There are a numberof different options for data output (and input) and we will cover that in more depth in the last section of the R session.
+
+```{r, echo=TRUE}
+write.csv(annot_data, file="data/annotated_rpkm", quote=F)
+```
+

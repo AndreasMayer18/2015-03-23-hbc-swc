@@ -24,7 +24,8 @@ represents a column, and each vector can be of a different data type (e.g.,
 characters, integers, factors). The `str()` function is useful to inspect the
 data types of the columns.
 
-A `data.frame` can be created by the functions `read.csv()` or `read.table()`, which can be used to import spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files.
+A `data.frame` can be created by the functions `read.csv()` or `read.table()`, which can be used to import spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files. The `read.table` function requires the user to provide specific arguments whereas for `read.csv` this is set by default. _Note that `read.csv` can also accept other delimiter files simply by passing in the `sep` argument_
+
 
 By default, `data.frame` converts (= coerces) columns that contain characters
 (i.e., text) into the `factor` data type. Depending on what you want to do with
@@ -35,8 +36,7 @@ can be set to `FALSE`.
 
 # Loading in files
 
-We are studying two different celltypes in mice and want to evaluate how gene expression differs in WT versus Knockout (KO).  The experimental design setup is stored as a `.csv` file: each row holds information for a single animal, and the columns represent `genotype`(WT or KO) , 
-`celltype` (typeA or typeB), and `replicate number`.
+We are studying two different celltypes in mice and want to evaluate how gene expression differs in WT versus Knockout (KO).  The experimental design setup is stored as a `.csv` file: each row holds information for a single animal, and the columns represent `genotype`(WT or KO),  `celltype` (typeA or typeB), and `replicate number`.
 
 To load in our metadata, we need to locate the `mouse_exp_design.csv` file. We will use
 `read.csv()` to load into memory (as a `data.frame`) the content of the CSV
@@ -66,12 +66,11 @@ colnames(metadata)
 ```
 
 ### Exercise
-We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`. Check to see how the dataframe has changed. What happens if we load in data using `read.table`? _Mention the requirement of all arguments when using `read.table`_
+We can change the default settings by adding in arguments when we read in the data by setting `header = FALSE`. Check to see how the dataframe has changed. What happens if we load in data using `read.table`? 
 
  **Load the data in again using default settings and `read.csv` to continue.**
 
-Suppose we had a larger file, we might not want to display all the contents in the console. Instead we could check the top (the first 6 lines) of this `data.frame` using the
-function `head()`:
+Suppose we had a larger file, we might not want to display all the contents in the console. Instead we could check the top (the first 6 lines) of this `data.frame` using the function `head()`:
 
 ```{r, results='show', purl=FALSE}
 head(metadata)
@@ -116,7 +115,7 @@ objects besides `data.frame`.
 
 * What is the class of the object `metadata`?
 * How many rows and how many columns are in this object?
-* Try `summary()` and see how that changes when you load in data using `stringsAsFactors=F`
+* Load in data again, storing it as `test_data` and using `stringsAsFactors=F`
 
 As you can see, the columns `genotype` and `celltype` are of a special class called
 `factor`. Before we learn more about the `data.frame` class, we are going to
@@ -154,15 +153,15 @@ nlevels(sex)
 
 Sometimes, the order of the factors does not matter, other times you might want
 to specify the order because it is meaningful (e.g., "low", "medium", "high") or
-it is required by particular type of analysis. For example, in this case you might want the "low" group to be your base
-level. That is, we are only interested in changes relative to "low".
+it is required by particular type of analysis. For example, in this case you might want the "low" group to be your base level. That is, we are only interested in changes relative to "low".
 
 ```{r, purl=TRUE, error=TRUE}
 food <- factor(c("low", "high", "medium", "high", "low", "medium", "high"))
 levels(food)
 relevel(food, ref="low")
 ```
- Additionally, specifying the order of the levels allows to compare levels:
+
+Additionally, specifying the order of the levels allows to compare levels:
 
 ```{r, purl=TRUE, error=TRUE}
 food <- factor(food, levels=c("low", "medium", "high"))
@@ -173,10 +172,7 @@ levels(food)
 min(food) ## works!
 ```
 
-In R's memory, these factors are represented by numbers (1, 2, 3). They are
-better than using simple integer labels because factors are self describing:
-`"low"`, `"medium"`, and `"high"`" is more descriptive than `1`, `2`, `3`. Which
-is low?  You wouldn't be able to tell with just integer data. Factors have this
+In R's memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: `"low"`, `"medium"`, and `"high"`" is more descriptive than `1`, `2`, `3`. Which is low?  You wouldn't be able to tell with just integer data. Factors have this
 information built in. It is particularly helpful when there are many levels.
 
 ### Converting factors
