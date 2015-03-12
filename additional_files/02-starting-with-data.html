@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Learning Objectives {.objectives}</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<blockquote>
+<h2>Learning Objectives {.objectives}</h2>
+
+<ul>
+<li>Introducing data frames</li>
+<li>Load in data (CSV files)</li>
+<li>Explore the structure and the content of the data in R</li>
+<li>Understand what are factors and how to manipulate them</li>
+</ul>
+</blockquote>
+
+<h1>What are data frames?</h1>
+
+<p><code>data.frame</code> is the <em>de facto</em> data structure for most tabular data and what we
+use for statistics and plotting.</p>
+
+<p>A <code>data.frame</code> is a collection of vectors of identical lengths. Each vector
+represents a column, and each vector can be of a different data type (e.g.,
+characters, integers, factors). The <code>str()</code> function is useful to inspect the
+data types of the columns.</p>
+
+<p>A <code>data.frame</code> can be created by the functions <code>read.csv()</code> or <code>read.table()</code>, which can be used to import spreadsheets from your hard drive (or the web). As we see in the pull-down menu that appears after tab-completion there are a number of functions for loading in files. The <code>read.table</code> function requires the user to provide specific arguments whereas for <code>read.csv</code> this is set by default. <em>Note that <code>read.csv</code> can also accept other delimiter files simply by passing in the <code>sep</code> argument</em></p>
+
+<blockquote>
+<p>{.callout}
+By default, <code>data.frame</code> converts (= coerces) columns that contain characters
+(i.e., text) into the <code>factor</code> data type. Depending on what you want to do with
+the data, you may want to keep these columns as <code>character</code>. To do so,
+<code>read.csv()</code> and <code>read.table()</code> have an argument called <code>stringsAsFactors</code> which
+can be set to <code>FALSE</code>.</p>
+</blockquote>
+
+<h1>Loading in files</h1>
+
+<p>We are studying two different celltypes in mice and want to evaluate how gene expression differs in WT versus Knockout (KO).  The experimental design setup is stored as a <code>.csv</code> file: each row holds information for a single animal, and the columns represent <code>genotype</code>(WT or KO),  <code>celltype</code> (typeA or typeB), and <code>replicate number</code>.</p>
+
+<p>To load in our metadata, we need to locate the <code>mouse_exp_design.csv</code> file. We will use
+<code>read.csv()</code> to load into memory (as a <code>data.frame</code>) the content of the CSV
+file. Using the same command function as our previous session, but <strong>this time we will assign it to a variable</strong>.</p>
+
+<pre><code class="r">metadata &lt;- read.csv(file=&#39;meta/mouse_exp_design.csv&#39;)
+</code></pre>
+
+<p>This statement doesn&#39;t produce any output because assignment doesn&#39;t display
+anything. If we want to check that our data has been loaded, we can print the
+variable&#39;s value: </p>
+
+<pre><code class="r">metadata
+</code></pre>
+
+<pre><code>##          genotype celltype replicate
+## sample1        Wt    typeA         1
+## sample2        Wt    typeA         2
+## sample3        Wt    typeA         3
+## sample4        KO    typeA         1
+## sample5        KO    typeA         2
+## sample6        KO    typeA         3
+## sample7        Wt    typeB         1
+## sample8        Wt    typeB         2
+## sample9        Wt    typeB         3
+## sample10       KO    typeB         1
+## sample11       KO    typeB         2
+## sample12       KO    typeB         3
+</code></pre>
+
+<p><strong>At this point, make sure all participants have the data loaded</strong></p>
+
+<p>By default, using the <code>read.csv</code> function will load in the data and assign the first row of the table to be our <strong>column names</strong>. Additionally since our header has one less name than there are columns R automatically assigns the <strong>first column as row names</strong>. 
+We can look at the values assigned for each by using <code>row.names</code> and <code>col.names</code>.</p>
+
+<pre><code class="r">rownames(metadata)
+colnames(metadata)
+</code></pre>
+
+<blockquote>
+<h3>Challenge {.challenge}</h3>
+
+<p>We can change the default settings by adding in arguments when we read in the data by setting <code>header = FALSE</code>. Check to see how the dataframe has changed. What happens if we load in data using <code>read.table</code>? </p>
+</blockquote>
+
+<p><strong>Load the data in again using default settings and <code>read.csv</code> to continue.</strong></p>
+
+<p>Suppose we had a larger file, we might not want to display all the contents in the console. Instead we could check the top (the first 6 lines) of this <code>data.frame</code> using the function <code>head()</code>:</p>
+
+<pre><code class="r">head(metadata)
+</code></pre>
+
+<p>Let&#39;s now check the <strong>str</strong>ucture of this <code>data.frame</code> in more details with the
+function <code>str()</code>:</p>
+
+<pre><code class="r">str(metadata)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    12 obs. of  3 variables:
+##  $ genotype : Factor w/ 2 levels &quot;KO&quot;,&quot;Wt&quot;: 2 2 2 1 1 1 2 2 2 1 ...
+##  $ celltype : Factor w/ 2 levels &quot;typeA&quot;,&quot;typeB&quot;: 1 1 1 1 1 1 2 2 2 2 ...
+##  $ replicate: int  1 2 3 1 2 3 1 2 3 1 ...
+</code></pre>
+
+<p><strong>You can also get this information from the &ldquo;Environment&rdquo; tab in RStudio.</strong></p>
+
+<h1>Inspecting <code>data.frame</code> objects</h1>
+
+<p>We already saw how the functions <code>head()</code> and <code>str()</code> can be useful to check the
+content and the structure of a <code>data.frame</code>. Here is a non-exhaustive list of
+functions to get a sense of the content/structure of the data.</p>
+
+<ul>
+<li>Size:
+
+<ul>
+<li><code>dim()</code> - returns a vector with the number of rows in the first element, and
+the number of columns as the second element (the <strong>dim</strong>ensions of the object)</li>
+<li><code>nrow()</code> - returns the number of rows</li>
+<li><code>ncol()</code> - returns the number of columns</li>
+</ul></li>
+<li>Content:
+
+<ul>
+<li><code>head()</code> - shows the first 6 rows</li>
+<li><code>tail()</code> - shows the last 6 rows</li>
+</ul></li>
+<li>Names:
+
+<ul>
+<li><code>names()</code> - returns the column names (synonym of <code>colnames()</code> for <code>data.frame</code>
+objects)</li>
+<li><code>rownames()</code> - returns the row names</li>
+</ul></li>
+<li>Summary:
+
+<ul>
+<li><code>str()</code> - structure of the object and information about the class, length and
+content of  each column</li>
+<li><code>summary()</code> - summary statistics for each column</li>
+</ul></li>
+</ul>
+
+<p>Note: most of these functions are &ldquo;generic&rdquo;, they can be used on other types of
+objects besides <code>data.frame</code>.</p>
+
+<blockquote>
+<h3>Challenge {.challenge}</h3>
+
+<ul>
+<li>What is the class of the object <code>metadata</code>?</li>
+<li>How many rows and how many columns are in this object?</li>
+<li>Load in data again, storing it as <code>test_data</code> and using <code>stringsAsFactors=F</code></li>
+</ul>
+</blockquote>
+
+<p>As you can see, the columns <code>genotype</code> and <code>celltype</code> are of a special class called
+<code>factor</code>. Before we learn more about the <code>data.frame</code> class, we are going to
+talk about factors. They are very useful but not necessarily intuitive, and
+therefore require some attention.</p>
+
+<h2>Factors</h2>
+
+<p>Factors are used to represent categorical data. Factors can be ordered or
+unordered and are an important class for statistical analysis and for plotting.</p>
+
+<p>Factors are stored as integers, and have labels associated with these unique
+integers. While factors look (and often behave) like character vectors, they are
+actually integers under the hood, and you need to be careful when treating them
+like strings.</p>
+
+<p>Once created, factors can only contain a pre-defined set values, known as
+<em>levels</em>. By default, R always sorts <em>levels</em> in alphabetical order. For
+instance, if you have a factor with 2 levels:</p>
+
+<pre><code class="r">sex &lt;- factor(c(&quot;male&quot;, &quot;female&quot;, &quot;female&quot;, &quot;male&quot;))
+</code></pre>
+
+<p>R will assign <code>1</code> to the level <code>&quot;female&quot;</code> and <code>2</code> to the level <code>&quot;male&quot;</code> (because
+<code>f</code> comes before <code>m</code>, even though the first element in this vector is
+<code>&quot;male&quot;</code>). You can check this by using the function <code>levels()</code>, and check the
+number of levels using <code>nlevels()</code>:</p>
+
+<pre><code class="r">levels(sex)
+</code></pre>
+
+<pre><code>## [1] &quot;female&quot; &quot;male&quot;
+</code></pre>
+
+<pre><code class="r">nlevels(sex)
+</code></pre>
+
+<pre><code>## [1] 2
+</code></pre>
+
+<p>Sometimes, the order of the factors does not matter, other times you might want
+to specify the order because it is meaningful (e.g., &ldquo;low&rdquo;, &ldquo;medium&rdquo;, &ldquo;high&rdquo;) or
+it is required by particular type of analysis. For example, in this case you might want the &ldquo;low&rdquo; group to be your base level. That is, we are only interested in changes relative to &ldquo;low&rdquo;.</p>
+
+<pre><code class="r">food &lt;- factor(c(&quot;low&quot;, &quot;high&quot;, &quot;medium&quot;, &quot;high&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;))
+
+relevel(food, ref=&quot;low&quot;) # set base level
+</code></pre>
+
+<p>Additionally, specifying the order of the levels allows to compare levels:</p>
+
+<pre><code class="r">food &lt;- factor(food, levels=c(&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;))
+levels(food)
+min(food) ## doesn&#39;t work
+food &lt;- factor(food, levels=c(&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;), ordered=TRUE)
+levels(food)
+min(food) ## works!
+</code></pre>
+
+<p>In R&#39;s memory, these factors are represented by numbers (1, 2, 3). They are better than using simple integer labels because factors are self describing: <code>&quot;low&quot;</code>, <code>&quot;medium&quot;</code>, and <code>&quot;high&quot;</code>&ldquo; is more descriptive than <code>1</code>, <code>2</code>, <code>3</code>. Which is low?  You wouldn&#39;t be able to tell with just integer data. Factors have this
+information built in. It is particularly helpful when there are many levels.</p>
+
+<h3>Converting factors</h3>
+
+<p>If you need to convert a factor to a character vector, simply use
+<code>as.character(x)</code>.</p>
+
+<p>Converting a factor to a numeric vector is however a little trickier, and you
+have to go via a character vector. Compare:</p>
+
+<pre><code class="r">f &lt;- factor(c(1, 5, 10, 2))
+as.numeric(f)               ## wrong! and there is no warning...
+as.numeric(as.character(f)) ## works...
+as.numeric(levels(f))[f]    ## The recommended way.
+</code></pre>
+
+</body>
+
+</html>
