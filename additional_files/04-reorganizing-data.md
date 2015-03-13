@@ -189,17 +189,17 @@ counts <- read.csv('data/annotated_combined.counts')
 > 1. all of the Ensemble IDs in the count matrix are contained in the RPKM matrix
 > 2. the order of Ensemble Ids is the same in both data frames
 > 3. subset such that you have two data files that have matching row names
-
+##This was very challenging-I finished it, but it took me longer than the allotted time. This entire section may take more than the 30min designated.
 
 
 Now, we should have two data files of the same dimensions. The column of interest from our counts file (gene symbols) can be cut and paste onto our data file using `cbind` (__c__olumn__bind__) function to add columns. The number of rows needs to be identical between the two objects.
 
 
 
-Suppose we wanted to remove the column, just like you can select columns by their positions in the `data.frame` or by their names you can also remove. The only difference is that we would use a minus sign to indicate the column number we wish to remove `annot_data[,-1]` or specify the column by name `annot_data[,-genesymbol]`. Note that the column names should not be quoted
+Suppose we wanted to remove the column, just like you can select columns by their positions in the `data.frame` or by their names, you can also remove them. The only difference is that we would use a minus sign to indicate the column number we wish to remove `annot_data[,-1]` or specify the column by name `annot_data[,-genesymbol]`. Note that the column names should not be quoted
 
 Similar to `cbind()` for columns, there is a function `rbind()` (__r__ow__bind__) that puts together two `data.frame`. With `rbind()` the number of columns and their names must be identical between the two objects. 
-
+##Could you have the challenge be to finish making the data.frame and save it as annotated_rpkm. I feel let down that we aren't going to join the rpkm data with the gene names column after all that work.
 
 > ### Challenge {.challenge}
 > Use the code provided below to generate a dataframe `df1` of coloured blocks. Given the dataframe, try the following tasks:
@@ -216,7 +216,7 @@ df1 <- data.frame(color=c("red", "green", "blue"), length=c(15,20,26), width=c(2
 
 
 # Writing data to file
-Although we have the annotated RPKM data matrix stored in memory, it would be quite useful for future analyses. We can export it to file using the `write.csv` command, including arguments for the filename (be sure to add on the correct path so it gets exported to your `data` directory). There are a numberof different options for data output (and input) and we will cover that in more depth in the last section of the R session.
+Although we have the annotated RPKM data matrix stored in memory, it would be quite useful for future analyses. We can export it to file using the `write.csv` command, including arguments for the filename (be sure to add on the correct path so it gets exported to your `data` directory). There are a number of different options for data output (and input) and we will cover that in more depth in the last section of the R session.
 
 
 ```r
