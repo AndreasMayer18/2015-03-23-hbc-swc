@@ -78,7 +78,7 @@ metadata[ ,3]    # the entire 3rd column
 
 For larger datasets, it can be tricky to remember the column
 number that corresponds to a particular variable. (Are species names in column 5
-or 7? oh, right... they are in column 6). In some cases, column containing the variable can change if the script you are using adds or removes
+or 7? oh, right... they are in column 6). In some cases, the column containing the variable can change if the script you are using adds or removes
 columns. It's therefore often better to use column names to refer to a
 particular variable, and it makes your code easier to read and your intentions
 clearer.
