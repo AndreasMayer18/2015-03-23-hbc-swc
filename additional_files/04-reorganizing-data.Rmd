@@ -15,9 +15,7 @@ minutes: 30
 
 # Subsetting data
 
-When analyzing data, we often want to look at partial statistics, such
-as the maximum value of a variable per species or the average value per celltype.
-
+When analyzing data, we often want to look at partial statistics, and evaluate values within a subset of our data
 One way to do this is to select the data we want, and create a new temporary
 array, using the `subset()` function. For instance, if we just want to look at
 the samples of a specific celltype "typeA":
